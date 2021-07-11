@@ -1,0 +1,207 @@
+{% extends "baseregister.html" %}
+{% block content %}
+{{success}}
+{{error}}
+<form method="POST" action="user/">
+ <div class="row">
+      <div class="col-12">
+        <div class="card mb-4">
+          <div class="card-header pb-0">
+            <h6>User Registration</h6>
+          </div>
+          <div class="card-body px-0 pt-0 pb-2">
+            <div class="table-responsive p-0">
+              <table class="table align-items-center mb-0">               
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="d-flex px-2 py-1">                        
+                        <div class="d-flex flex-column justify-content-center">
+                         {% csrf_token %}
+                        </div>
+                      </div>
+                    </td>                    
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="d-flex px-2 py-1">                       
+                        <div class="d-flex flex-column justify-content-center">
+			<label for="uname"><b>Username</b></label>                          
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+ 			<div class="d-flex px-2 py-1">                       
+                        <div class="d-flex flex-column justify-content-center">
+			<input type="text" placeholder="Enter Username" name="userId" required>                        
+                        </div>
+                      </div>                     
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="d-flex px-2 py-1">                       
+                        <div class="d-flex flex-column justify-content-center">
+			<label for="uname"><b>First Name</b></label>                         
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+ 			<div class="d-flex px-2 py-1">                       
+                        <div class="d-flex flex-column justify-content-center">
+			<input type="text" placeholder="First Name" name="firstName" required>                         
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                     <td>
+                      <div class="d-flex px-2 py-1">                       
+                        <div class="d-flex flex-column justify-content-center">
+			<label for="uname"><b>Last Name</b></label>                         
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+ 			<div class="d-flex px-2 py-1">                       
+                        <div class="d-flex flex-column justify-content-center">
+			<input type="text" placeholder="Last Name" name="lastName" required>                         
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                     <td>
+                      <div class="d-flex px-2 py-1">                       
+                        <div class="d-flex flex-column justify-content-center">
+			<label for="psw"><b>Password</b></label>                       
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+ 			<div class="d-flex px-2 py-1">                       
+                        <div class="d-flex flex-column justify-content-center">
+			<input type="password" placeholder="Password" name="userPassword" required>                         
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+		<tr>
+                     <td>
+                      <div class="d-flex px-2 py-1">                       
+                        <div class="d-flex flex-column justify-content-center">
+			<label for="cpsw"><b>Confirm password</b></label>                      
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+ 			<div class="d-flex px-2 py-1">                       
+                        <div class="d-flex flex-column justify-content-center">
+			<input type="password" placeholder="Confirm password" name="cuserPassword" required>                         
+                        </div>
+                      </div>
+                    </td>
+                  </tr>		
+		<tr>
+                    <td>
+                      <div class="d-flex px-2 py-1">                       
+                        <div class="d-flex flex-column justify-content-center">
+			<label for="mobn"><b>Mobile number</b></label>                 
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+ 			<div class="d-flex px-2 py-1">                       
+                        <div class="d-flex flex-column justify-content-center">
+			<input type="text" placeholder="Mobile number" name="mobileno" required>                        
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+		<tr>
+                     <td>
+                      <div class="d-flex px-2 py-1">                       
+                        <div class="d-flex flex-column justify-content-center">
+			<label for="age"><b>Age</b></label>                 
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+ 			<div class="d-flex px-2 py-1">                       
+                        <div class="d-flex flex-column justify-content-center">
+			<input type="text" placeholder="Age" name="age" required>                        
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+		<tr>
+                     <td>
+                      <div class="d-flex px-2 py-1">                       
+                        <div class="d-flex flex-column justify-content-center">
+			<label for="address"><b>Address</b></label>                 
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+ 			<div class="d-flex px-2 py-1">                       
+                        <div class="d-flex flex-column justify-content-center">
+			<input type="textarea" placeholder="Address" name="address" required>                        
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+		
+		<tr>
+                     <td>
+                      <div class="d-flex px-2 py-1">                       
+                        <div class="d-flex flex-column justify-content-center">
+			<label for="pincode"><b>Pincode</b></label>                 
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+ 			<div class="d-flex px-2 py-1">                       
+                        <div class="d-flex flex-column justify-content-center">
+			<input type="text" placeholder="Pincode" name="pincode" required>                        
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+
+		<tr>
+                     <td>
+                      <div class="d-flex px-2 py-1">                       
+                        <div class="d-flex flex-column justify-content-center">
+			<label for="emailid"><b>Email</b></label>                 
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+ 			<div class="d-flex px-2 py-1">                       
+                        <div class="d-flex flex-column justify-content-center">
+			<input type="text" placeholder="Email" name="emailid" required>                        
+                        </div>
+                      </div>
+                    </td>
+                  </tr>	
+
+		<tr>
+                     <td>
+                      <div class="d-flex px-2 py-1">                       
+                        <div class="d-flex flex-column justify-content-center">
+			<button type="submit">Save</button>                
+                        </div>
+                      </div>
+                    </td>
+                   
+                  </tr>			
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+</form>
+{% endblock %}
+
