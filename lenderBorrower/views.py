@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from lenderBorrower.models import LenderBorrower ,Book
 from datetime import datetime
 from datetime import timedelta
+from .models import LenderBorrower
 
 
 # Create your views here.
@@ -56,6 +57,10 @@ def findMatches(request):
             filterData(lenderBorrowers)
         except ValueError as error: 
             print(error)
+def display(request):
+    lb=LenderBorrower.objects.all()
+    return render(request,'lender2.html',{'books':lb})
+    
 from django.shortcuts import render
 from django.http import HttpResponse
 # Create your views here.
