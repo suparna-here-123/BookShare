@@ -23,4 +23,5 @@ urlpatterns = [
     path('validate/',views.validate),
     path('register/',views.register),
     path('register/user/',views.add_user),
+    path('lender2/',views.lender2),
 ]
