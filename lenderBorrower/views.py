@@ -56,6 +56,23 @@ def findMatches(request):
             filterData(lenderBorrowers)
         except ValueError as error: 
             print(error)
-    
+from django.shortcuts import render
+from django.http import HttpResponse
+# Create your views here.
+posts=[{'author':'Nithika B',
+'title':'Post',
+'content':'hello',
+'date_posted': '2000'},
+    {'author':'Nith',
+'title':'Post',
+'content':'hello',
+'date_posted': '6000'}
+]
+def lender2(request):
+    context={
+      'posts':posts
+    }
+    return render(request,'lender2.html',context)
+
 
    

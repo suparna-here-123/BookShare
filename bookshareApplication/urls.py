@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from userApp import views
+from lenderBorrower import views as v
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -23,5 +24,5 @@ urlpatterns = [
     path('validate/',views.validate),
     path('register/',views.register),
     path('register/user/',views.add_user),
-    path('lender2/',views.lender2),
+    path('lender2/',v.lender2),
 ]

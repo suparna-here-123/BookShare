@@ -80,8 +80,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'bookshare',
-        'USER': 'root',
-        'PASSWORD': '#^(Qrt)_129',
+        'USER': 'admin',
+        'PASSWORD': 'password',
         'HOST': '127.0.0.1',
         'PORT': '3306',
     }

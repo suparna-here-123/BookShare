@@ -54,23 +54,5 @@ def add_user(request):
                 return render(request, 'register.html', {'error':'Passwords did not match'})
         except IntegrityError:
             return render(request, 'register.html', {'error':'That username has already been taken. Please choose a new username'})
-   
-from django.shortcuts import render
-from django.http import HttpResponse
-# Create your views here.
-posts=[{'author':'Nithika B',
-'title':'Post',
-'content':'hello',
-'date_posted': '2000'},
-    {'author':'Nith',
-'title':'Post',
-'content':'hello',
-'date_posted': '6000'}
-]
-def lender2(request):
-    context={
-      'posts':posts
-    }
-    return render(request,'lender2.html',context)
 
 
