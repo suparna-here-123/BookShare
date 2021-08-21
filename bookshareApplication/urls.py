@@ -25,6 +25,7 @@ urlpatterns = [
     path('register/',views.register),
     path('register/user/',views.add_user),
     path('lender2/',v.lender2),
-    path('LenderBorrower/lender2',v.lender2,name='lender2'),
+    path('LenderBorrower/lender2/',v.display,name='lender2'),
+    path('borrower/',v.borrower),
     
 ]

@@ -58,7 +58,9 @@ def findMatches(request):
         except ValueError as error: 
             print(error)
 def display(request):
+    
     lb=LenderBorrower.objects.all()
+    print("data",lb)
     return render(request,'lender2.html',{'books':lb})
     
 from django.shortcuts import render
@@ -74,10 +76,17 @@ posts=[{'author':'Nithika B',
 'date_posted': '6000'}
 ]
 def lender2(request):
+    lb=LenderBorrower.objects.all()
     context={
-      'posts':posts
+      'posts':lb
     }
     return render(request,'lender2.html',context)
+def borrower(request):
+    lb=LenderBorrower.objects.all()
+    context={
+      'posts':lb
+    }
+    return render(request,'borrower.html',context)
 
 
    
