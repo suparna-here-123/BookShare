@@ -13,13 +13,13 @@ def register(request):
 
 def validate(request):
     if request.method=='POST':
-        userId = request.POST['userId']
+        username = request.POST['username']
         password = request.POST['userPassword']
-        print('userId', userId)
+        print('username', username)
         print('password', password)
-        users = Appuser.objects.filter(userId=userId)
+        users = Appuser.objects.filter(username=username)
         for usr in users:            
-            username = usr.userId
+            username = usr.username
             if usr.userPassword == password:                
                 return render(request,'home.html')
         return render(request,'login.html',{'error':'User name or password is wrong'}) 
@@ -30,7 +30,7 @@ def add_user(request):
             firstName = request.POST['firstName']            
             lastName = request.POST['lastName']
             age =request.POST['age']
-            userId =request.POST['userId']
+            username =request.POST['username']
             userPassword = request.POST['userPassword']
             cuserPassword = request.POST['cuserPassword']
             address =request.POST['address']
@@ -41,7 +41,7 @@ def add_user(request):
             s.firstName = firstName
             s.lastName =lastName
             s.age = int(age)
-            s.userId = userId
+            s.username = username
             s.userPassword = userPassword
             s.address = address
             s.pincode = pincode
@@ -54,5 +54,8 @@ def add_user(request):
                 return render(request, 'register.html', {'error':'Passwords did not match'})
         except IntegrityError:
             return render(request, 'register.html', {'error':'That username has already been taken. Please choose a new username'})
+
+    
+    
 
 
