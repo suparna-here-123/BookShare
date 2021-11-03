@@ -29,9 +29,13 @@ urlpatterns = [
     path('lender2/',v.lender2),
     path('lenderBorrower/lender2/',v.display,name='lender2'),
     path('borrower/',v.borrower),
-    path('dashboard/home',v1.available),
+    path('dashboard/home/',v1.available),
+    path('dashboard/home/',v1.lendable),
     path('lend/',v.lend),
     path('lend/user/',v.add_book),
+    path('profile2/',v.profile2),
+    path('dashboard/home/',v1.profile),
+    
 
 
     

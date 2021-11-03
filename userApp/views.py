@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from userApp.models import Appuser
 from django.db import IntegrityError
+from dashboard import views as v
+
 
 # Create your views here.
 
@@ -10,7 +12,7 @@ def index(request):
 
 def register(request):
     return render(request,'register.html')
-
+combinedresult={}
 def validate(request):
     if request.method=='POST':
         username = request.POST['username']
@@ -20,9 +22,18 @@ def validate(request):
         users = Appuser.objects.filter(username=username)
         for usr in users:            
             username = usr.username
-            if usr.userPassword == password:                
-                return render(request,'home.html')
-        return render(request,'login.html',{'error':'User name or password is wrong'}) 
+            if usr.userPassword == password:
+                result=v.available(username)
+                result1=v.lendable(username)
+                result2=v.profile(username)
+                global combinedresult
+                combinedresult = {
+                    "available":result[0],"lendable":result1[0],"available2":result[1],"lendable2":result1[1],"profile":result2
+                    }
+                                
+                return render(request,'home.html',combinedresult)
+        return render(request,'login.html',{'error':'User name or password is wrong'})
+
 
 def add_user(request):
     if request.method=='POST':

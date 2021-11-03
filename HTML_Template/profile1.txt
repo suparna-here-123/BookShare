@@ -13,14 +13,14 @@
         <i><p class="mb-5"><b>First name:</i></b> {{ p.0 }}<br>
         <i><p class="mb-5"><b>Last name:</i></b> {{ p.1 }}<br>
         <i><p class="mb-5"><b>User password:</i></b> {{ p.3 }}<br>
-        <i><p class="mb-5"><b><label for="uname">Age:</b></label><input type="text" placeholder="Age" name="age" value={{ p.4 }} ></i> <br>
+        <i><p class="mb-5"><b>Age:</i></b> {{ p.4 }}<br>
          <i><p class="mb-5"><b>Address:</i></b> {{ p.5 }}<br>
         <i><p class="mb-5"><b>Pincode:</i></b> {{ p.6 }}<br>
         <i><p class="mb-5"><b>Mobile No.:</i></b> {{ p.7 }}<br>
         <i><p class="mb-5"><b>Email Id:</i></b>{{ p.8 }}</p>
         
 <div class = "col-lg-5 ms-auto mt-lg-0">
-                       <button class="btn bg-gradient-primary my-1 me-1">Save updates</button>
+                       <button class="btn bg-gradient-primary my-1 me-1">Update</button>
                     </a>
                   </div>
                 </div>
@@ -34,6 +34,4 @@
 
 {% endfor %}
 {% endblock content %}
-
-
 
