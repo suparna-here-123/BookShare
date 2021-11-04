@@ -12,25 +12,11 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.CreateModel(
-            name='LenderBorrower',
-            fields=[
-                ('id', models.AutoField(primary_key=True, serialize=False)),
-                ('userName', models.CharField(default='', max_length=20)),
-                ('borrowerStartdate', models.DateTimeField()),
-                ('borrowerEnddate', models.DateTimeField()),
-                ('lenderEnddate', models.DateTimeField()),
-                ('lenderStartdate', models.DateTimeField()),
-                ('userType', models.CharField(default='', max_length=20)),
-                ('returnPolicy', models.CharField(default='', max_length=2000)),
-                ('hasWishlist', models.BooleanField()),
-                ('lendingpolicyAgreement', models.BooleanField()),
-            ],
-        ),
+        
         migrations.CreateModel(
             name='Book',
             fields=[
-                ('id', models.AutoField(primary_key=True, serialize=False)),
+                ('book_id', models.IntegerField(primary_key=True, serialize=False)),
                 ('bookname', models.CharField(default='', max_length=255)),
                 ('authorname', models.CharField(default='', max_length=255)),
                 ('genre', models.CharField(default='', max_length=50)),
@@ -39,8 +25,7 @@ class Migration(migrations.Migration):
                 ('condition', models.CharField(default='', max_length=50)),
                 ('description', models.CharField(default='', max_length=255)),
                 ('bookphoto', models.CharField(default='', max_length=100)),
-                ('bookstatus', models.CharField(default='', max_length=100)),
-                ('lenderBorrowerId', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='lenderBorrower.lenderborrower')),
-            ],
-        ),
-    ]
+                ('bookstatus', models.CharField(default='', max_length=100))
+                    
+    ])
+        ]

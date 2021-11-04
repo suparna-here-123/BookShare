@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from userApp.models import Appuser
 from django.db import IntegrityError
+from dashboard import views as v
+
 
 # Create your views here.
 
@@ -10,19 +12,30 @@ def index(request):
 
 def register(request):
     return render(request,'register.html')
-
+combinedresult={}
 def validate(request):
     if request.method=='POST':
-        userId = request.POST['userId']
+        username = request.POST['username']
         password = request.POST['userPassword']
-        print('userId', userId)
+        print('username', username)
         print('password', password)
-        users = Appuser.objects.filter(userId=userId)
+        users = Appuser.objects.filter(username=username)
         for usr in users:            
-            username = usr.userId
-            if usr.userPassword == password:                
-                return render(request,'home.html')
-        return render(request,'login.html',{'error':'User name or password is wrong'}) 
+            username = usr.username
+            if usr.userPassword == password:
+                result=v.available(username)
+                result1=v.lendable(username)
+                result2=v.profile(username)
+                global combinedresult
+                combinedresult = {
+                    "available":result[0],"lendable":result1[0],"available2":result[1],
+                    "lendable2":result1[1],
+                    "profile":result2
+                    }
+                                
+                return render(request,'home.html',combinedresult)
+        return render(request,'login.html',{'error':'User name or password is wrong'})
+
 
 def add_user(request):
     if request.method=='POST':
@@ -30,7 +43,7 @@ def add_user(request):
             firstName = request.POST['firstName']            
             lastName = request.POST['lastName']
             age =request.POST['age']
-            userId =request.POST['userId']
+            username =request.POST['username']
             userPassword = request.POST['userPassword']
             cuserPassword = request.POST['cuserPassword']
             address =request.POST['address']
@@ -41,7 +54,7 @@ def add_user(request):
             s.firstName = firstName
             s.lastName =lastName
             s.age = int(age)
-            s.userId = userId
+            s.username = username
             s.userPassword = userPassword
             s.address = address
             s.pincode = pincode
@@ -54,5 +67,8 @@ def add_user(request):
                 return render(request, 'register.html', {'error':'Passwords did not match'})
         except IntegrityError:
             return render(request, 'register.html', {'error':'That username has already been taken. Please choose a new username'})
+
+    
+    
 
 
