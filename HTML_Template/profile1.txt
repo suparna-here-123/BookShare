@@ -34,4 +34,5 @@
 
 {% endfor %}
 {% endblock content %}
+<a div class = "col-lg-5 ms-auto mt-lg-0" href="/confirmborrow/{{p.10}}">
 

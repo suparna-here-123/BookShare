@@ -67,7 +67,7 @@
                   <div class="numbers">
                     <p class="text-sm mb-0 text-capitalize font-weight-bold">Books I have borrowed</p>
                     <h5 class="font-weight-bolder mb-0">
-                      5
+                      {{borrow}}
                       
                     </h5>
                   </div>
@@ -120,9 +120,11 @@
         <i><h5 class="font-weight-bolder"><b>Book name:</i></b> {{ book.0 }}<br></h5>
         <i><p class="mb-5"><b>Author name:</i></b> {{ book.1 }}<br>
         <i><p class="mb-5"><b>Lender name:</i></b>{{ book.2 }}</p>
+<i><p class="mb-5"><b>Book Id:</i></b>{{ book.3 }}</p>
         
-<a div class = "col-lg-5 ms-auto mt-lg-0" href="">
-                       <button class="btn bg-gradient-primary my-1 me-1">Borrow</button>
+<a div class = "col-lg-5 ms-auto mt-lg-0" href="/borrowdetails/{{book.3}}">
+
+                       <button class="btn bg-gradient-primary my-1 me-1">Book details</button>
                     </a>
                   </div>
                 </div>

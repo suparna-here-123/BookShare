@@ -6,7 +6,7 @@ import mysql.connector as m
 # Create your views here.
 def available(x):
     try:
-        con = m.connect(host='localhost',user='root', passwd='#^(Qrt)_129',db='bookshare')
+        con = m.connect(host='localhost',user='admin', passwd='password',db='bookshare')
         if con.is_connected():
             mycursor = con.cursor()
             #print('connection to database established')
@@ -32,7 +32,7 @@ def available(x):
 result2=0
 def lendable(x):
     try:
-        con = m.connect(host='localhost',user='root', passwd='#^(Qrt)_129',db='bookshare')
+        con = m.connect(host='localhost',user='admin', passwd='password',db='bookshare')
         if con.is_connected():
             mycursor = con.cursor()
             sql2 = f"select  count(book_id) from book b, userapp_appuser u where u.username=b.user_name and u.username='{x}'"
@@ -56,7 +56,7 @@ def lendable(x):
         con.close()
 def profile(x):
     try:
-        con = m.connect(host='localhost',user='root', passwd='#^(Qrt)_129',db='bookshare')
+        con = m.connect(host='localhost',user='admin', passwd='password',db='bookshare')
         if con.is_connected():
             mycursor = con.cursor()
             sql3 = f"select * from userapp_appuser u where u.username='{x}'"
@@ -69,5 +69,30 @@ def profile(x):
             print(e)
     else:
         con.close()
+def getBorrowdetails(x):
+    try:
+        con = m.connect(host='localhost',user='admin', passwd='password',db='bookshare')
+        if con.is_connected():
+            mycursor = con.cursor()
+            sql3 = f"select * from book b where b.book_id={x}"
+            mycursor.execute(sql3)
+            result2 = mycursor.fetchall()
+            result3={"borrowdetails":result2}
+            return result3
+        else:
+            print('connection to database not established')
+    except m.Error as e:
+            print(e)
+    else:
+        con.close()
+
+
+
+    
+    
+
+
+
+        
 
 

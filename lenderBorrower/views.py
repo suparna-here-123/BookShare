@@ -8,6 +8,8 @@ from .models import Book
 import random as r
 from userApp import views as v
 import mysql.connector as m
+from dashboard import views as dash_v
+
 
 
 
@@ -35,21 +37,18 @@ posts=[{'author':'Nithika B',
 def lender2(request):
     return render(request,'lender2.html',v.combinedresult)
 
-
-
         
 def profile2(request):
     return render(request,'profile.html',v.combinedresult)
 
+def borrowdetails(request,bookId):
+    print(bookId)
+    return render(request,'borrowdetails.html',dash_v.getBorrowdetails(bookId))
+
 
         
 
-def borrower(request):
-    lb=Book.objects.all()
-    context={
-      'posts':lb
-    }
-    return render(request,'borrower.html',context)
+
 def lend(request):
     return render(request,'lend.html')
 
@@ -73,6 +72,8 @@ def add_book(request):
             s.bookcondition = bookcondition
             s.description  = description 
             s.bookphoto = bookphoto
+            s.user_name=v.Appuser.objects.get(username=v.combinedresult["Username"])
+            s.bookstatus='yes'
             lst=[]
             def idbook():
                 flag=0
@@ -82,11 +83,28 @@ def add_book(request):
                         lst.append(code)
                         flag=1
                         return code
+            
             s.book_id=idbook()
             s.save(force_insert=True)                
             return render(request,'lend.html',{'success':'details saved successfully'})
         except IntegrityError:
             return render(request, 'lend.html', {'error':'That username has already been taken. Please choose a new username'})
+
+def confirmborrow(request,bookId):
+    b_id = Book.objects.filter(book_id=bookId)
+    for i in b_id:
+        i.bookstatus='no'       
+        i.save()
+        global lst
+        lst+=[(i.bookname,i.authorname,i.user_name,i.book_id)]
+        print("confirm borrow",lst)
+    return render(request,'borrowdetails.html',{'success':'lender has been notified'})
+
+
+def borrow(request):
+    d={"borrow":len(lst)}
+    return render(request,'home.html',d)
+    
 
 
    

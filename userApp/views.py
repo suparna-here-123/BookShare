@@ -5,6 +5,7 @@ from django.db import IntegrityError
 from dashboard import views as v
 
 
+
 # Create your views here.
 
 def index(request):
@@ -12,6 +13,7 @@ def index(request):
 
 def register(request):
     return render(request,'register.html')
+
 combinedresult={}
 def validate(request):
     if request.method=='POST':
@@ -30,8 +32,9 @@ def validate(request):
                 combinedresult = {
                     "available":result[0],"lendable":result1[0],"available2":result[1],
                     "lendable2":result1[1],
-                    "profile":result2
+                    "profile":result2,"Username":username
                     }
+                
                                 
                 return render(request,'home.html',combinedresult)
         return render(request,'login.html',{'error':'User name or password is wrong'})
@@ -67,6 +70,8 @@ def add_user(request):
                 return render(request, 'register.html', {'error':'Passwords did not match'})
         except IntegrityError:
             return render(request, 'register.html', {'error':'That username has already been taken. Please choose a new username'})
+
+
 
     
     
