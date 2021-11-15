@@ -45,8 +45,12 @@ def borrowdetails(request,bookId):
     print(bookId)
     return render(request,'borrowdetails.html',dash_v.getBorrowdetails(bookId))
 
-
-        
+def deletebook(request,bookId):
+    print(bookId)
+    return render(request,'lender2.html',dash_v.delete(bookId))
+'''def emailid(request,bookId):
+    return render(request,'borrowdetails.html',dash_v.lenderemailid()'''
+    
 
 
 def lend(request):
@@ -95,14 +99,10 @@ def confirmborrow(request,bookId):
     for i in b_id:
         i.bookstatus='no'       
         i.save()
-        global lst
-        lst+=[(i.bookname,i.authorname,i.user_name,i.book_id)]
-        print("confirm borrow",lst)
-    return render(request,'borrowdetails.html',{'success':'lender has been notified'})
+    return render(request,'borrowdetails.html',{'success':'lender has been notified\n'+dash_v.lenderemailid(bookId)})
 
 
 def borrow(request):
-    d={"borrow":len(lst)}
     return render(request,'home.html',d)
     
 

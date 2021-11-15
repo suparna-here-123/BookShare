@@ -86,6 +86,46 @@ def getBorrowdetails(x):
     else:
         con.close()
 
+def lenderemailid(x):
+    try:
+        con = m.connect(host='localhost',user='admin', passwd='password',db='bookshare')
+        if con.is_connected():
+            mycursor = con.cursor()
+            sql3 = f"select user_name from book b where b.book_id={x}"
+            mycursor.execute(sql3)
+            result2 = mycursor.fetchall()
+            for i in result2:
+                l_user=i[0]
+                sql4=f"select emailid from userapp_appuser where username='{l_user}'" #getting emailid of lender
+                mycursor.execute(sql4)
+                result3 = mycursor.fetchall()
+            #email_d={"email":result3[0][0]}
+            return result3[0][0]
+        else:
+            print('connection to database not established')
+    except m.Error as e:
+            print(e)
+    else:
+        con.close()
+        
+def delete(x):
+    try:
+        con = m.connect(host='localhost',user='admin', passwd='password',db='bookshare')
+        if con.is_connected():
+            mycursor = con.cursor()
+            sql3 = f"delete from book where book_id={x}"
+            mycursor.execute(sql3)
+            con.commit()
+        else:
+            print('connection to database not established')
+    except m.Error as e:
+            print(e)
+    else:
+        con.close()
+
+    
+    
+
 
 
     

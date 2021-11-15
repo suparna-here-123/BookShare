@@ -39,7 +39,12 @@ urlpatterns = [
     path('dashboard/home/',v1.profile),
     path('borrowdetails/<bookId>',v.borrowdetails),
     path('confirmborrow/<bookId>',v.confirmborrow),
-    path('lenderBorrower/home/',v.borrow)
+    path('lenderBorrower/home/',v.borrow),
+    path('delete/<bookId>',v.deletebook),
+  
+    
+    
+    
     
 
 
