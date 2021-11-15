@@ -30,8 +30,10 @@ urlpatterns = [
     path('lender2/',v.lender2),
     path('lenderBorrower/lender2/',v.display,name='lender2'),
     #path('borrower/',v.borrower),
-    path('dashboard/home/',v1.available),
+    path('dashboard/home/',v1.available),    
     path('dashboard/home/',v1.lendable),
+    path('my_borrow2/',v.my_borrow2),
+    path('lenderBorrower/my_borrow2/',v.display,name='my_borrow2'),
     path('lend/',v.lend),
     path('lend/user/',v.add_book),
     path('backtodash/',v.backtodash),
@@ -41,6 +43,8 @@ urlpatterns = [
     path('confirmborrow/<bookId>',v.confirmborrow),
     path('lenderBorrower/home/',v.borrow),
     path('delete/<bookId>',v.deletebook),
+    path('ret_but/<bookId>',v.return_book),
+    
   
     
     

@@ -26,8 +26,8 @@ class Book(models.Model):
     description = models.CharField(max_length=255, blank=False, default='')
     bookphoto = models.CharField(max_length=100, blank=False, default='')
     bookstatus = models.CharField(max_length=100, blank=False, default='')
-    lender_enddate = models.DateTimeField(null=True, blank=True)
-    lender_startdate = models.DateTimeField(null=True, blank=True)
     user_name =  models.ForeignKey(m.Appuser,on_delete=models.CASCADE , db_column='user_name')
+    borrower = models.CharField(max_length=50, blank=False, default='')
+    
     
   

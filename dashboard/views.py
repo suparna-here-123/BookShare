@@ -123,6 +123,39 @@ def delete(x):
     else:
         con.close()
 
+def my_borrow(x):
+    try:
+        con = m.connect(host='localhost',user='admin', passwd='password',db='bookshare')
+        if con.is_connected():
+            mycursor = con.cursor()
+            sql4 = f"select bookname,authorname,book_id,user_name,borrower from book where borrower='{x}'"
+            mycursor.execute(sql4)
+            result4 = mycursor.fetchall()
+            return result4
+        else:
+            print('connection to database not established')
+    except m.Error as e:
+            print(e)
+    else:
+        con.close()
+
+def ret_but(x):
+    try:
+        con = m.connect(host='localhost',user='admin', passwd='password',db='bookshare')
+        if con.is_connected():
+            mycursor = con.cursor()
+            sql3 = f"update book set bookstatus='yes',borrower=null where book_id={x}"
+            mycursor.execute(sql3)
+            con.commit()
+        else:
+            print('connection to database not established')
+    except m.Error as e:
+            print(e)
+    else:
+        con.close()
+
+    
+
     
     
 

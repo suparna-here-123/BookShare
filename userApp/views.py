@@ -28,11 +28,12 @@ def validate(request):
                 result=v.available(username)
                 result1=v.lendable(username)
                 result2=v.profile(username)
+                result3=v.my_borrow(username)
                 global combinedresult
                 combinedresult = {
                     "available":result[0],"lendable":result1[0],"available2":result[1],
                     "lendable2":result1[1],
-                    "profile":result2,"Username":username
+                    "profile":result2,"Username":username,"my_borrow":result3
                     }
                 
                                 

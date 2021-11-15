@@ -37,6 +37,9 @@ posts=[{'author':'Nithika B',
 def lender2(request):
     return render(request,'lender2.html',v.combinedresult)
 
+def my_borrow2(request):
+    return render(request,'myborrow.html',v.combinedresult)
+
         
 def profile2(request):
     return render(request,'profile.html',v.combinedresult)
@@ -50,6 +53,9 @@ def deletebook(request,bookId):
     return render(request,'lender2.html',dash_v.delete(bookId))
 '''def emailid(request,bookId):
     return render(request,'borrowdetails.html',dash_v.lenderemailid()'''
+def return_book(request,bookId):
+    return render(request,'myborrow.html',dash_v.ret_but(bookId))
+    
     
 
 
@@ -78,6 +84,7 @@ def add_book(request):
             s.bookphoto = bookphoto
             s.user_name=v.Appuser.objects.get(username=v.combinedresult["Username"])
             s.bookstatus='yes'
+            s.borrower='NULL'
             lst=[]
             def idbook():
                 flag=0
@@ -97,7 +104,9 @@ def add_book(request):
 def confirmborrow(request,bookId):
     b_id = Book.objects.filter(book_id=bookId)
     for i in b_id:
-        i.bookstatus='no'       
+        i.bookstatus='no'
+        i.borrower=str(v.Appuser.objects.get(username=v.combinedresult["Username"]))[16:-1:]        
+        print("length",i.borrower)
         i.save()
     return render(request,'borrowdetails.html',{'success':'lender has been notified\n'+dash_v.lenderemailid(bookId)})
 
