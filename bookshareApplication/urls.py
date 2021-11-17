@@ -44,6 +44,9 @@ urlpatterns = [
     path('lenderBorrower/home/',v.borrow),
     path('delete/<bookId>',v.deletebook),
     path('ret_but/<bookId>',v.return_book),
+    path('profile2/user/',v.save_updates),
+    
+
     
   
     

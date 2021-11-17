@@ -131,7 +131,10 @@ def my_borrow(x):
             sql4 = f"select bookname,authorname,book_id,user_name,borrower from book where borrower='{x}'"
             mycursor.execute(sql4)
             result4 = mycursor.fetchall()
-            return result4
+            sql5 = f"select count(book_id) from book where borrower='{x}'"
+            mycursor.execute(sql5)
+            result5 = mycursor.fetchall()
+            return result4,result5[0][0]
         else:
             print('connection to database not established')
     except m.Error as e:

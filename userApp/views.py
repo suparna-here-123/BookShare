@@ -33,7 +33,7 @@ def validate(request):
                 combinedresult = {
                     "available":result[0],"lendable":result1[0],"available2":result[1],
                     "lendable2":result1[1],
-                    "profile":result2,"Username":username,"my_borrow":result3
+                    "profile":result2,"Username":username,"my_borrow":result3[0],"borrow_number":result3[1]
                     }
                 
                                 

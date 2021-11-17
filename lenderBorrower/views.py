@@ -5,10 +5,12 @@ from lenderBorrower.models import Book
 from datetime import datetime
 from datetime import timedelta
 from .models import Book
+from userApp.models import Appuser
 import random as r
 from userApp import views as v
 import mysql.connector as m
 from dashboard import views as dash_v
+
 
 
 
@@ -100,6 +102,25 @@ def add_book(request):
             return render(request,'lend.html',{'success':'details saved successfully'})
         except IntegrityError:
             return render(request, 'lend.html', {'error':'That username has already been taken. Please choose a new username'})
+def save_updates(request):
+    if request.method=='POST':
+        try:
+            age = request.POST['age']            
+            address = request.POST['address']
+            pincode =request.POST['pincode']
+            mobileno =request.POST['mobileno']
+            emailid = request.POST['emailid']
+            u_name = Appuser.objects.filter(username=v.combinedresult["Username"])
+            for s in u_name:
+                s.age = age
+                s.address = address
+                s.pincode = pincode
+                s.mobileno = mobileno
+                s.emailid  = emailid
+                s.save()                
+            return render(request,'profile.html',{'success':'details saved successfully'})
+        except IntegrityError:
+            return render(request, 'lend.html', {'error':'That username has already been taken. Please choose a new username'})
 
 def confirmborrow(request,bookId):
     b_id = Book.objects.filter(book_id=bookId)
@@ -108,7 +129,7 @@ def confirmborrow(request,bookId):
         i.borrower=str(v.Appuser.objects.get(username=v.combinedresult["Username"]))[16:-1:]        
         print("length",i.borrower)
         i.save()
-    return render(request,'borrowdetails.html',{'success':'lender has been notified\n'+dash_v.lenderemailid(bookId)})
+    return render(request,'borrowdetails.html',{'success':'Lender has been notified\nContact the lender at email id: '+dash_v.lenderemailid(bookId)})
 
 
 def borrow(request):
