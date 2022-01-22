@@ -17,6 +17,8 @@ def register(request):
 combinedresult={}
 def validate(request):
     if request.method=='POST':
+        global username
+        global password
         username = request.POST['username']
         password = request.POST['userPassword']
         print('username', username)
@@ -30,6 +32,24 @@ def validate(request):
                 result2=v.profile(username)
                 result3=v.my_borrow(username)
                 global combinedresult
+                combinedresult = {
+                    "available":result[0],"lendable":result1[0],"available2":result[1],
+                    "lendable2":result1[1],
+                    "profile":result2,"Username":username,"my_borrow":result3[0],"borrow_number":result3[1]
+                    }
+                
+                                
+                return render(request,'home.html',combinedresult)
+    elif request.method == 'GET':
+        print('username from get', username)
+        users = Appuser.objects.filter(username=username)
+        for usr in users:            
+            username = usr.username
+            if usr.userPassword == password:
+                result=v.available(username)
+                result1=v.lendable(username)
+                result2=v.profile(username)
+                result3=v.my_borrow(username)
                 combinedresult = {
                     "available":result[0],"lendable":result1[0],"available2":result[1],
                     "lendable2":result1[1],

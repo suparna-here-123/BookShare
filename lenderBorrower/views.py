@@ -65,7 +65,7 @@ def lend(request):
     return render(request,'lend.html')
 
 def backtodash(request):
-    return render(request,"home.html",v.combinedresult)
+    return v.validate(request)
 
 
 def add_book(request):
