@@ -4,8 +4,6 @@ from userApp.models import Appuser
 from django.db import IntegrityError
 from dashboard import views as v
 
-
-
 # Create your views here.
 
 def index(request):
@@ -15,14 +13,14 @@ def register(request):
     return render(request,'register.html')
 
 combinedresult={}
-def validate(request):
+
+def validate(request): #allows registered user to login by validating
+    
     if request.method=='POST':
         global username
         global password
         username = request.POST['username']
         password = request.POST['userPassword']
-        print('username', username)
-        print('password', password)
         users = Appuser.objects.filter(username=username)
         for usr in users:            
             username = usr.username
@@ -37,11 +35,9 @@ def validate(request):
                     "lendable2":result1[1],
                     "profile":result2,"Username":username,"my_borrow":result3[0],"borrow_number":result3[1]
                     }
-                
-                                
                 return render(request,'home.html',combinedresult)
+            
     elif request.method == 'GET':
-        print('username from get', username)
         users = Appuser.objects.filter(username=username)
         for usr in users:            
             username = usr.username
@@ -54,14 +50,12 @@ def validate(request):
                     "available":result[0],"lendable":result1[0],"available2":result[1],
                     "lendable2":result1[1],
                     "profile":result2,"Username":username,"my_borrow":result3[0],"borrow_number":result3[1]
-                    }
-                
-                                
+                    } 
                 return render(request,'home.html',combinedresult)
         return render(request,'login.html',{'error':'User name or password is wrong'})
 
 
-def add_user(request):
+def add_user(request): #adds newly registered users into the database
     if request.method=='POST':
         try:
             firstName = request.POST['firstName']            

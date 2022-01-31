@@ -19,8 +19,6 @@ from userApp import views
 from lenderBorrower import views as v
 from dashboard import views as v1
 
-
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.index),
@@ -29,7 +27,6 @@ urlpatterns = [
     path('register/user/',views.add_user),
     path('lender2/',v.lender2),
     path('lenderBorrower/lender2/',v.display,name='lender2'),
-    #path('borrower/',v.borrower),
     path('dashboard/home/',v1.available),    
     path('dashboard/home/',v1.lendable),
     path('my_borrow2/',v.my_borrow2),
@@ -44,16 +41,5 @@ urlpatterns = [
     path('lenderBorrower/home/',v.borrow),
     path('delete/<bookId>',v.deletebook),
     path('ret_but/<bookId>',v.return_book),
-    path('profile2/user/',v.save_updates),
-    
+    path('profile2/user/',v.save_updates),]      
 
-    
-  
-    
-    
-    
-    
-
-
-    
-]

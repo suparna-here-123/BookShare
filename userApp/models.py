@@ -3,6 +3,7 @@ from django.db import models
 # Create your models here.
 
 class Appuser(models.Model):
+    
     class Meta:         
          db_table = 'userapp_appuser'
          

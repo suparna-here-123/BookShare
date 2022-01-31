@@ -4,14 +4,12 @@ from django.http import HttpResponse
 import mysql.connector as m
 
 # Create your views here.
-def available(x):
+
+def available(x): #to get available books
     try:
         con = m.connect(host='localhost',user='admin', passwd='password',db='bookshare')
         if con.is_connected():
             mycursor = con.cursor()
-            #print('connection to database established')
-            #sql1="select username from userapp_appuser u"
-            #name=mycursor.execute(sql1)
             sql2 = f"select count(book_id) from book b, userapp_appuser u where b.user_name<>u.username and bookstatus='yes' and u.username='{x}'"
             sql3 = f"select bookname,authorname,user_name,book_id from book b, userapp_appuser u where b.user_name<>u.username and bookstatus='yes' and u.username='{x}'"
             mycursor.execute(sql2)
@@ -19,9 +17,7 @@ def available(x):
             mycursor.execute(sql3)
             result2 = mycursor.fetchall()
             d2=result2
-            print("list",d2)
             d=result[0][0]
-            print("Available books",d)
             return d,d2
         else:
             print('connection to database not established')
@@ -29,24 +25,21 @@ def available(x):
             print(e)
     else:
         con.close()
+        
 result2=0
-def lendable(x):
+def lendable(x): #to get the books the user can lend
     try:
         con = m.connect(host='localhost',user='admin', passwd='password',db='bookshare')
         if con.is_connected():
             mycursor = con.cursor()
-            sql2 = f"select  count(book_id) from book b, userapp_appuser u where u.username=b.user_name and u.username='{x}'"
-            
+            sql2 = f"select  count(book_id) from book b, userapp_appuser u where u.username=b.user_name and u.username='{x}'"            
             mycursor.execute(sql2)
             result = mycursor.fetchall()
             sql3 = f"select bookname,authorname,book_id from book b, userapp_appuser u where u.username=b.user_name and u.username='{x}'"
             mycursor.execute(sql3)
             global result2
             result2 = mycursor.fetchall()
-            print(result2)
-            
             d1=result[0][0]
-            print("lendable books",d1)
             return d1,result2
         else:
             print('connection to database not established')
@@ -54,7 +47,8 @@ def lendable(x):
             print(e)
     else:
         con.close()
-def profile(x):
+        
+def profile(x): #to get the details of the user
     try:
         con = m.connect(host='localhost',user='admin', passwd='password',db='bookshare')
         if con.is_connected():
@@ -69,7 +63,8 @@ def profile(x):
             print(e)
     else:
         con.close()
-def getBorrowdetails(x):
+        
+def getBorrowdetails(x): #to display the details of the book
     try:
         con = m.connect(host='localhost',user='admin', passwd='password',db='bookshare')
         if con.is_connected():
@@ -86,7 +81,7 @@ def getBorrowdetails(x):
     else:
         con.close()
 
-def lenderemailid(x):
+def lenderemailid(x): #getting emailid of lender
     try:
         con = m.connect(host='localhost',user='admin', passwd='password',db='bookshare')
         if con.is_connected():
@@ -96,10 +91,9 @@ def lenderemailid(x):
             result2 = mycursor.fetchall()
             for i in result2:
                 l_user=i[0]
-                sql4=f"select emailid from userapp_appuser where username='{l_user}'" #getting emailid of lender
+                sql4=f"select emailid from userapp_appuser where username='{l_user}'" 
                 mycursor.execute(sql4)
                 result3 = mycursor.fetchall()
-            #email_d={"email":result3[0][0]}
             return result3[0][0]
         else:
             print('connection to database not established')
@@ -108,7 +102,7 @@ def lenderemailid(x):
     else:
         con.close()
         
-def delete(x):
+def delete(x): #remove a book the lender no longer wishes to lend
     try:
         con = m.connect(host='localhost',user='admin', passwd='password',db='bookshare')
         if con.is_connected():
@@ -123,7 +117,7 @@ def delete(x):
     else:
         con.close()
 
-def my_borrow(x):
+def my_borrow(x): #to display the books the user has borrowed
     try:
         con = m.connect(host='localhost',user='admin', passwd='password',db='bookshare')
         if con.is_connected():
@@ -142,7 +136,7 @@ def my_borrow(x):
     else:
         con.close()
 
-def ret_but(x):
+def ret_but(x): #Enables the borrower to indicate his/her desire to return borrowed books
     try:
         con = m.connect(host='localhost',user='admin', passwd='password',db='bookshare')
         if con.is_connected():
