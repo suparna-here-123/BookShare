@@ -1,2 +1,2 @@
-# bookshare
-This is for the CBSE school project
+## BookShare
+A second-hand book-lending web portal powered by Django and MySQL.
